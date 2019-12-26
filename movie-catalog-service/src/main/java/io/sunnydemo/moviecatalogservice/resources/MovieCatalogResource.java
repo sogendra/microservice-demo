@@ -44,7 +44,6 @@ public class MovieCatalogResource {
 
 			return new CatalogItem(movie.getName(), movie.getDesc(), rating.getRating());
 		}).collect(Collectors.toList());
-
 	}
 
 	public List<CatalogItem> getFallbackCatalog(@PathVariable("userId") String userId){
