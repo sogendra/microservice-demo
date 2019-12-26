@@ -27,5 +27,10 @@ public class MovieCatalogServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MovieCatalogServiceApplication.class, args);
+		printMessage("helloooo");
+	}
+
+	private static void printMessage(String message){
+		System.out.println(message);
 	}
 }
