@@ -1,10 +1,9 @@
 package io.sunnydemo.moviecatalogservice.resources;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import io.sunnydemo.moviecatalogservice.models.CatalogItem;
+import io.sunnydemo.moviecatalogservice.models.Movie;
+import io.sunnydemo.moviecatalogservice.models.UserRating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import io.sunnydemo.moviecatalogservice.models.CatalogItem;
-import io.sunnydemo.moviecatalogservice.models.Movie;
-import io.sunnydemo.moviecatalogservice.models.UserRating;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/catalog")
@@ -34,7 +33,7 @@ public class MovieCatalogResource {
 	@GetMapping("/{userId}")
 	@HystrixCommand(fallbackMethod = "getFallbackCatalog")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
-
+		System.out.println("userId: "+ userId);
 		UserRating ratings = this.restTemplate.getForObject("http://rating-data-service/ratings-data/users/" + userId,
 				UserRating.class);
 

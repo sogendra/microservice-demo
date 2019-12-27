@@ -13,19 +13,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableEurekaClient
 @EnableCircuitBreaker
 public class MovieCatalogServiceApplication {
-	
-	@Bean
-	@LoadBalanced
-	public RestTemplate getRestTemplate(){
-		return new RestTemplate();
-	}
-	
-	@Bean
-	public WebClient.Builder getWebClient(){
-		return  WebClient.builder();
-	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(MovieCatalogServiceApplication.class, args);
-	}
+    @Bean
+    @LoadBalanced
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
+
+    @Bean
+    public WebClient.Builder getWebClient() {
+        return WebClient.builder();
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(MovieCatalogServiceApplication.class, args);
+    }
 }

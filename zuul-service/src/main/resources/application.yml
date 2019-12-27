@@ -1,0 +1,34 @@
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    movie-catalog-service:
+      path: /catalog/{userId}
+      serviceId: movie-catalog-service
+#      url: http://localhost:7070
+    rating-data-service:
+      path: /ratings-data/users/foo
+      serviceId: RATING-DATA-SERVICE
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8070/eureka/
+#  instance:
+#    hostname: localhost
+
+server:
+  port: 7073
+
+spring:
+  application:
+    name: zuul-service
+
+# Increase the Hystrix timeout to 60s (for all)
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
